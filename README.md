@@ -1,46 +1,45 @@
 # Platform GitOps
 
-This repository contains the desired environment configuration for Kubernetes services deployed through the DevEx platform. It pins both the company Helm chart version and immutable service image versions for staging and production.
+This repository contains small environment- and service-specific Helm value overrides for Kubernetes services managed by the DevEx platform. Only staging and production are supported.
 
-## Architecture and responsibilities
+## Architecture
 
 ```text
-Application repository
-    source code, Dockerfile, CI, and container release
-              ↓
 platform-helm-charts
-    reusable company Kubernetes templates, security defaults,
-    and Kubernetes standards
+    company-wide Kubernetes defaults and templates
               ↓
 platform-gitops
-    desired environment configuration, immutable image version,
-    pinned chart version, and environment-specific Helm values
+    environment/service-specific overrides
+              ↓
+ApplicationSet
+    automatically discovers environments/*/*
               ↓
 Argo CD
-    reads platform-gitops, combines its values with platform-helm-charts,
-    and reconciles Kubernetes
+    combines the central Helm chart with the appropriate values.yaml
 ```
 
-Application developers should not manually construct these files during normal usage. Backstage and platform automation will eventually create initial service entries.
+The directory path is the deployment metadata. For example, `environments/staging/nodejs-ci-test` represents the `nodejs-ci-test` service in staging. A future ApplicationSet will derive the environment from path segment 2 and the service from path segment 3.
 
-## Promotion model
+The ApplicationSet will use Argo CD multiple sources:
+
+1. `platform-helm-charts` for the central service chart.
+2. `platform-gitops` for the matching environment values.
+
+The ApplicationSet will be added after the EKS and Argo CD destination-cluster model is established. This repository does not invent cluster names, Kubernetes API endpoints, or per-service Application manifests.
+
+## Scale and developer experience
+
+The structure scales linearly. Fifty services across two environments produce up to 100 small values files rather than copied Kubernetes manifests.
+
+Application developers should not manually create these files. Backstage will eventually create:
 
 ```text
-container release
-    ↓
-ECR image:<git-sha>
-    ↓
-staging values.yaml
-    ↓
-staging validation
-    ↓
-production values.yaml
+environments/staging/<service>/values.yaml
+environments/production/<service>/values.yaml
 ```
 
-The reusable Kubernetes GitOps CD workflow will later update the staging `image.tag` after a successful container release. Production promotion will update the production `image.tag` with the same staging-tested SHA. Images are never rebuilt between staging and production, and `latest` tags are not permitted.
+The CD workflow will update the staging `image.tag` after container release. Production promotion will update the production `image.tag` with the same staging-tested immutable Git SHA. The image is not rebuilt between environments, and `latest` tags are never used.
 
 ## Secrets
 
-Do not store application secrets directly in `platform-gitops`.
-
-Future secrets will be delivered through a platform-supported mechanism such as External Secrets Operator, AWS Secrets Manager, and Kubernetes workload identity. None of these mechanisms are implemented yet.
+Do not store Kubernetes secrets, AWS credentials, IAM role ARNs, or Argo CD credentials here. A platform-supported secrets mechanism will be introduced separately.

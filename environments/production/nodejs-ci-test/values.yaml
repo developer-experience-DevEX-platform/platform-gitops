@@ -4,26 +4,3 @@ image:
   pullPolicy: IfNotPresent
 
 replicaCount: 3
-
-containerPort: 3000
-
-service:
-  type: ClusterIP
-  port: 80
-  targetPort: 3000
-
-livenessProbe:
-  enabled: true
-  httpGet:
-    path: /health
-
-readinessProbe:
-  enabled: true
-  httpGet:
-    path: /health
-
-resources:
-  requests:
-    cpu: 250m
-    memory: 256Mi
-  limits: {}

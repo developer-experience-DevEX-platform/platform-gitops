@@ -1,9 +1,0 @@
-service: nodejs-ci-test
-environment: staging
-
-chart:
-  repository: developer-experience-DevEX-platform/platform-helm-charts
-  name: service
-  version: "0.1.0"
-
-valuesFile: values.yaml
