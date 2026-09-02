@@ -1,0 +1,6 @@
+image:
+  repository: 980829302319.dkr.ecr.eu-west-2.amazonaws.com/platform-pipeline-test
+  tag: '1bfd57b84ccbc6267fac7ae3dd85802e4b60ef3d'
+  pullPolicy: IfNotPresent
+
+replicaCount: 3
