@@ -25,7 +25,7 @@ The ApplicationSet will use Argo CD multiple sources:
 1. `platform-helm-charts` for the central service chart.
 2. `platform-gitops` for the matching environment values.
 
-The ApplicationSet will be added after the EKS and Argo CD destination-cluster model is established. This repository does not invent cluster names, Kubernetes API endpoints, or per-service Application manifests.
+The staging ApplicationSet discovers `environments/staging/*` and creates one Argo CD Application per service. Production remains intentionally disabled until its deployment and promotion model is introduced.
 
 ## Scale and developer experience
 
