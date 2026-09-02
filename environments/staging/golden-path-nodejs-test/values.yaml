@@ -1,0 +1,28 @@
+image:
+  repository: 980829302319.dkr.ecr.eu-west-2.amazonaws.com/golden-path-nodejs-test
+  tag: '00997a502d70385b65a2cb0578d325dd5314f8bd'
+  pullPolicy: IfNotPresent
+
+replicaCount: 2
+
+containerPort: 3000
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 3000
+
+livenessProbe:
+  enabled: true
+  httpGet:
+    path: /health
+
+readinessProbe:
+  enabled: true
+  httpGet:
+    path: /health
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
