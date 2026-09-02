@@ -1,27 +1,21 @@
 image:
   repository: 980829302319.dkr.ecr.eu-west-2.amazonaws.com/nodejs-ci-test
-  tag: d15c007035b1e953c1c59682848bf44396e4f7e1
+  tag: 8d7159aa2db43d7920b8df2584c757d5e283f998
   pullPolicy: IfNotPresent
-
 replicaCount: 2
-
 containerPort: 3000
-
 service:
   type: ClusterIP
   port: 80
   targetPort: 3000
-
 livenessProbe:
   enabled: true
   httpGet:
     path: /health
-
 readinessProbe:
   enabled: true
   httpGet:
     path: /health
-
 resources:
   requests:
     cpu: 100m
