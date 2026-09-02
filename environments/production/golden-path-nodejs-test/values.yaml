@@ -1,0 +1,6 @@
+image:
+  repository: 980829302319.dkr.ecr.eu-west-2.amazonaws.com/golden-path-nodejs-test
+  tag: '00997a502d70385b65a2cb0578d325dd5314f8bd'
+  pullPolicy: IfNotPresent
+
+replicaCount: 3
