@@ -1,27 +1,21 @@
 image:
   repository: 980829302319.dkr.ecr.eu-west-2.amazonaws.com/pipeline-end-end-test
-  tag: ''
+  tag: '0775d86d047decea82de1466b2738f2c8e1bf975'
   pullPolicy: IfNotPresent
-
 replicaCount: 2
-
 containerPort: 3000
-
 service:
   type: ClusterIP
   port: 80
   targetPort: 3000
-
 livenessProbe:
   enabled: true
   httpGet:
     path: /health
-
 readinessProbe:
   enabled: true
   httpGet:
     path: /health
-
 resources:
   requests:
     cpu: 100m
