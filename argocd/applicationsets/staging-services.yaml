@@ -11,11 +11,11 @@ spec:
     - git:
         repoURL: https://github.com/developer-experience-DevEX-platform/platform-gitops.git
         revision: main
-        directories:
-          - path: environments/staging/*
+        files:
+          - path: environments/staging/*/deployment.yaml
   template:
     metadata:
-      name: '{{.path.basename}}-staging'
+      name: '{{index .path.segments 2}}-staging'
     spec:
       project: default
       sources:
@@ -24,13 +24,13 @@ spec:
           path: charts/service
           helm:
             valueFiles:
-              - '$values/environments/staging/{{.path.basename}}/values.yaml'
+              - '$values/environments/staging/{{index .path.segments 2}}/values.yaml'
         - repoURL: https://github.com/developer-experience-DevEX-platform/platform-gitops.git
           targetRevision: main
           ref: values
       destination:
         server: https://kubernetes.default.svc
-        namespace: '{{.path.basename}}'
+        namespace: '{{index .path.segments 2}}-staging'
       syncPolicy:
         automated:
           prune: true
