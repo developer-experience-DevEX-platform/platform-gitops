@@ -1,6 +1,6 @@
 image:
   repository: 980829302319.dkr.ecr.eu-west-2.amazonaws.com/pipeline-end-end-test
-  tag: '170cf487346cd9288f66bd44f6a28c6fc2575df1'
+  tag: '89d8e3dd3803ec70272a51d6021b6b5f700a748d'
   pullPolicy: IfNotPresent
 replicaCount: 2
 containerPort: 3000
