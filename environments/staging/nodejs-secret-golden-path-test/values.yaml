@@ -1,27 +1,21 @@
 image:
   repository: 980829302319.dkr.ecr.eu-west-2.amazonaws.com/nodejs-secret-golden-path-test
-  tag: ''
+  tag: 'a9889cb1bb6018207f11ebafd91e2e45e5869f4b'
   pullPolicy: IfNotPresent
-
 replicaCount: 2
-
 containerPort: 3000
-
 service:
   type: ClusterIP
   port: 80
   targetPort: 3000
-
 livenessProbe:
   enabled: true
   httpGet:
     path: /health
-
 readinessProbe:
   enabled: true
   httpGet:
     path: /health
-
 resources:
   requests:
     cpu: 100m
