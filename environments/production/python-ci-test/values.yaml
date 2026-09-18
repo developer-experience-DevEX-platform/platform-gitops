@@ -3,3 +3,6 @@ image:
   tag: '9097d68df24a9e6c8bcc9f14cea26acc0cd3db88'
   pullPolicy: IfNotPresent
 replicaCount: 3
+containerPort: 8000
+service:
+  targetPort: 8000
