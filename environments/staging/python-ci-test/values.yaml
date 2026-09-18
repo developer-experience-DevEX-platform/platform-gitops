@@ -1,6 +1,6 @@
 image:
   repository: 980829302319.dkr.ecr.eu-west-2.amazonaws.com/python-ci-test
-  tag: ''
+  tag: '9097d68df24a9e6c8bcc9f14cea26acc0cd3db88'
   pullPolicy: IfNotPresent
 replicaCount: 2
 containerPort: 8000
