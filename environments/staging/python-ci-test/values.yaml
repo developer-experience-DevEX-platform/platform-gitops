@@ -2,21 +2,12 @@ image:
   repository: 980829302319.dkr.ecr.eu-west-2.amazonaws.com/python-ci-test
   tag: '9097d68df24a9e6c8bcc9f14cea26acc0cd3db88'
   pullPolicy: IfNotPresent
-replicaCount: 2
+replicaCount: 1
 containerPort: 8000
-service:
-  type: ClusterIP
-  port: 80
-  targetPort: 8000
-livenessProbe:
-  enabled: true
-  httpGet:
-    path: /health
-readinessProbe:
-  enabled: true
-  httpGet:
-    path: /health
 resources:
   requests:
+    cpu: 50m
+    memory: 64Mi
+  limits:
     cpu: 100m
     memory: 128Mi

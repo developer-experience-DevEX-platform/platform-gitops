@@ -2,21 +2,11 @@ image:
   repository: 980829302319.dkr.ecr.eu-west-2.amazonaws.com/golden-path-final-test
   tag: '78aed061a7116f850344e264f1c51ef2d1864d22'
   pullPolicy: IfNotPresent
-replicaCount: 2
-containerPort: 3000
-service:
-  type: ClusterIP
-  port: 80
-  targetPort: 3000
-livenessProbe:
-  enabled: true
-  httpGet:
-    path: /health
-readinessProbe:
-  enabled: true
-  httpGet:
-    path: /health
+replicaCount: 1
 resources:
   requests:
+    cpu: 50m
+    memory: 64Mi
+  limits:
     cpu: 100m
     memory: 128Mi

@@ -2,6 +2,8 @@
 
 This repository contains small environment- and service-specific Helm value overrides for Kubernetes services managed by the DevEx platform. Only staging and production are supported.
 
+Put a key in `values.yaml` only when it should differ from the chart. Probes, service type, and port 3000 already live in `platform-helm-charts/charts/service`. Add an override when an environment should diverge — for example staging `replicaCount: 1` and smaller CPU/memory than production, Python `containerPort: 8000`, or production `replicaCount: 3`.
+
 ## Architecture
 
 ```text
