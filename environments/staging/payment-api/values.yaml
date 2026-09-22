@@ -1,6 +1,6 @@
 image:
   repository: 980829302319.dkr.ecr.eu-west-2.amazonaws.com/payment-api
-  tag: 'f992b047955da7ef92efb0f75393c04d0fc3e5a4'
+  tag: '6bb5d75b8fad33ccb317c8dfd2f87f0d37174eff'
   pullPolicy: IfNotPresent
 replicaCount: 1
 resources:
