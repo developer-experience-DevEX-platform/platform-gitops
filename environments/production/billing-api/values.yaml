@@ -1,0 +1,9 @@
+image:
+  repository: 980829302319.dkr.ecr.eu-west-2.amazonaws.com/billing-api
+  tag: ''
+  pullPolicy: IfNotPresent
+
+replicaCount: 3
+containerPort: 8000
+service:
+  targetPort: 8000
