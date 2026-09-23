@@ -1,0 +1,9 @@
+image:
+  repository: 980829302319.dkr.ecr.eu-west-2.amazonaws.com/authentication-api
+  tag: ''
+  pullPolicy: IfNotPresent
+
+replicaCount: 3
+containerPort: 8080
+service:
+  targetPort: 8080
