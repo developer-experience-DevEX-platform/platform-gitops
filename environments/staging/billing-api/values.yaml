@@ -1,6 +1,6 @@
 image:
   repository: 980829302319.dkr.ecr.eu-west-2.amazonaws.com/billing-api
-  tag: ''
+  tag: '41b270ab50272872e7ddd02465512ce0bfe4dc1c'
   pullPolicy: IfNotPresent
 replicaCount: 1
 containerPort: 8000
