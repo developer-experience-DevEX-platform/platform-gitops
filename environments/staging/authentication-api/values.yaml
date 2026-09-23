@@ -1,6 +1,6 @@
 image:
   repository: 980829302319.dkr.ecr.eu-west-2.amazonaws.com/authentication-api
-  tag: ''
+  tag: 'a175017389ecb338216466d1484e38b9868f64b2'
   pullPolicy: IfNotPresent
 replicaCount: 1
 containerPort: 8080
